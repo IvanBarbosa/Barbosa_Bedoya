@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
 #define LUCKY_NUMBER 7
 #define MAX_WHITE_BALL 59
@@ -42,7 +41,6 @@ int calculate_result(int white_balls[5], int power_ball)
 	
 	// lottery ball numbers are always shown sorted
     qsort(white_balls,5,sizeof(int),my_sort_func);
-	// Here should be typed a function to calculate the probability
   return 0;
 }
 
@@ -50,16 +48,16 @@ int main(int argc, char** argv)
 {
 	int balls[6];
  	int count_balls = 0;
- 	bool favourite = false;	//this should be a bool
+ 	bool favorite = 0;	//this should be a bool
  	
  	for (int i=1; i<argc; i++)
  	{
  		const char* arg = argv[i];
  		if ('-' == arg[0])
  		{
- 			if (0 == strcmp(arg, "-favourite"))
+ 			if (0 == strcmp(arg, "-favorite"))
  			{	
- 				favourite = true;
+ 				favorite = 1;
  			}
 			else
  			{
@@ -96,7 +94,7 @@ int main(int argc, char** argv)
  	{
  		result = result * 2;
  	}
- 	if (favourite)
+ 	if (favorite)
 	{
  		result = result * 2;
  	}
@@ -104,7 +102,7 @@ int main(int argc, char** argv)
  	return 0;
 	
 usage_error:
- 	fprintf(stderr, "Usage: %s [-favourite] (5 white balls)
+ 	fprintf(stderr, "Usage: %s [-favorite] (5 white balls)
 power_ball\n", argv[0]);
  	return -1;
 }
